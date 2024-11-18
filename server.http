@@ -1,0 +1,61 @@
+### Ops User: Login
+POST http://localhost:3000/ops/login
+Content-Type: application/json
+
+{
+    "email": "opsuser@example.com",
+    "password": "password123"
+}
+
+### Ops User: Upload File
+POST http://localhost:3000/ops/upload
+Authorization: Bearer <replace_with_ops_user_token>
+Content-Type: multipart/form-data
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="example.docx"
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+< ./path_to_example.docx
+--boundary--
+
+###
+
+### Client User: Sign Up
+POST http://localhost:3000/client/signup
+Content-Type: application/json
+
+{
+    "email": "clientuser@example.com",
+    "password": "password123"
+}
+
+### Client User: Email Verification (replace with actual token from email)
+GET http://localhost:3000/verify-email/<replace_with_token>
+
+###
+
+### Client User: Login
+POST http://localhost:3000/client/login
+Content-Type: application/json
+
+{
+    "email": "clientuser@example.com",
+    "password": "password123"
+}
+
+### Client User: List All Files
+GET http://localhost:3000/client/files
+Authorization: Bearer <replace_with_client_user_token>
+
+###
+
+### Client User: Get Download Link
+GET http://localhost:3000/client/download/1
+Authorization: Bearer <replace_with_client_user_token>
+
+###
+
+### Download File (Replace with encrypted URL from the above response)
+GET http://localhost:3000/download/<replace_with_encrypted_url>
+Authorization: Bearer <replace_with_client_user_token>
